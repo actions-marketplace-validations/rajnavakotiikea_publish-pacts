@@ -36,9 +36,14 @@ broker_auth_setup() {
 }
 
 publish_pacts() {
-  echo "Script executed from: ${PWD}"
-  docker run --rm pactfoundation/pact-cli:latest publish "${INPUT_PACT_FILE_DIR}" --consumer-app-version "${INPUT_CONSUMER_APP_VERSION}" \
-  --broker-base-url "${INPUT_BROKER_BASE_URL}"  --broker-token "${INPUT_BROKER_TOKEN}"
+  docker run --rm \
+        -v ${PWD}:${PWD} \
+        pactfoundation/pact-cli \
+        publish ${PWD}/pacts \
+        --consumer-app-version nothing \
+        --tag nothing \
+        --broker-base-url https://sampleautoamtiontestraj.pactflow.io \
+        --broker-token GglUlzHa8Egn_fpkhzZQLw
 
 }
 

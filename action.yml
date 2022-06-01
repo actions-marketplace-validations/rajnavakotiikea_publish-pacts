@@ -45,10 +45,6 @@ inputs:
     description: Pact Broker bearer token
     required: false
 
-outputs:
-  webhook_uuid:
-    description: UUID of created webhook
-
 runs:
   using: 'docker'
   image: 'Dockerfile'

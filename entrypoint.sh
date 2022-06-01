@@ -36,15 +36,37 @@ broker_auth_setup() {
 }
 
 publish_pacts() {
+  broker_auth="$(broker_auth_setup)"
+
+  optional_args=''
+  if [ -n "${INPUT_REPOSITORY_BRANCH}" ]
+  then
+    optional_args="${optional_args} --branch ${INPUT_REPOSITORY_BRANCH}"
+  fi
+   if [ "${INPUT_TAG_WITH_GIT_BRANCH}" == "true" ]
+   then
+     optional_args="${optional_args} --tag-with-git-branch"
+  fi
+
+  if [ -n "${INPUT_BUILD_URL}" ]
+  then
+    optional_args="${optional_args} --build-url ${INPUT_BUILD_URL}"
+  fi
+
+  if [ "${INPUT_MERGE}" == "true" ]
+  then
+    optional_args="${optional_args} --merge"
+  fi
+
+
   docker run --rm \
         -v ${PWD}:${PWD} \
         pactfoundation/pact-cli \
-        publish ${PWD}/pacts \
-        --consumer-app-version nothing \
-        --tag nothing \
-        --broker-base-url https://sampleautoamtiontestraj.pactflow.io \
-        --broker-token GglUlzHa8Egn_fpkhzZQLw
-
+        publish ${INPUT_PACT_FILE_DIR} \
+        --consumer-app-version ${INPUT_CONSUMER_APP_VERSION} \
+        --tag ${INPUT_TAG} \
+        --broker-base-url ${INPUT_BROKER_BASE_URL} \
+        $broker_auth $optional_args
 }
 
 validate_args

@@ -1,0 +1,54 @@
+name: publish-pact-files
+description: 'This action will publish pact files to pact broker/pactflow'
+author: rajnavakoti
+branding:
+  icon: 'arrow-right'
+  color: 'yellow'
+
+inputs:
+  # Pact details
+  pact_file_dir:
+    description: Pacts file path
+    required: true
+  consumer_app_version:
+    description: The consumer application version
+    required: true
+  tag:
+    description: Tag name for consumer version. Can be specified multiple times
+    required: true
+  repository_branch:
+    description: Repository branch of the consumer version
+    required: false
+  tag_with_git_branch:
+    description: Tag consumer version with the name of the current git branch
+    required: false
+    default: "false"
+  build_url:
+    description: The build URL that created the pact
+    required: false
+  merge:
+    description: If a pact already exists for this consumer version and provider, merge the contents
+    required: false
+    default: "false"
+
+  # Broker authentication details [either token or username+password needed to be provided]
+  broker_base_url:
+    description: The base URL of the Pact Broker
+    required: true
+  broker_username:
+    description: Pact Broker basic auth username
+    required: false
+  broker_password:
+    description: Pact Broker basic auth password
+    required: false
+  broker_token:
+    description: Pact Broker bearer token
+    required: false
+
+outputs:
+  webhook_uuid:
+    description: UUID of created webhook
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

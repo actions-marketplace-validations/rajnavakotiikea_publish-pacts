@@ -1,4 +1,4 @@
-name: publish-pact-files
+name: publish-pacts-to-pact-broker
 description: 'This action will publish pact files to pact broker/pactflow'
 author: rajnavakoti
 branding:

@@ -35,8 +35,6 @@ When you want to publish your pact files to pact broker using a github composite
     broker_token: pact_broker_token
 ```
 
-### Create 'git commit status' webhook to receive verification status on consumer side
-
 ### Publish pacts with all possible parameters
 
 ```yaml

@@ -26,7 +26,7 @@ When you want to publish your pact files to pact broker using a github composite
 ### Publish pacts with all required parameters
 
 ```yaml
-- uses: rajnavakotiikea/publish-pacts@main
+- uses: rajnavakotiikea/publish-pacts@v1.0.1
   with:
     pact_file_dir: ${PWD}/pacts
     consumer_app_version: ${{ github.sha }}
@@ -38,7 +38,7 @@ When you want to publish your pact files to pact broker using a github composite
 ### Publish pacts with all possible parameters
 
 ```yaml
-- uses: rajnavakotiikea/publish-pacts@main
+- uses: rajnavakotiikea/publish-pacts@v1.0.1
   with:
     pact_file_dir: ${PWD}/pacts
     consumer_app_version: ${{ github.sha }}

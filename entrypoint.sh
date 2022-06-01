@@ -36,6 +36,7 @@ broker_auth_setup() {
 }
 
 publish_pacts() {
+  echo "This is the current path: $(PWD)"
   docker run --rm pactfoundation/pact-cli:latest publish "${INPUT_PACT_FILE_DIR}" --consumer-app-version "${INPUT_CONSUMER_APP_VERSION}" \
   --broker-base-url "${INPUT_BROKER_BASE_URL}"  --broker-token "${INPUT_BROKER_TOKEN}"
 
